@@ -10,6 +10,33 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function(){
+	$('.latestPosts').on('click', function(){
+		$.get('https://graph.facebook.com/v2.11/adamscenter/feed?access_token=')
+			.done((res) => {
+				res.data.forEach(function(post){
+					$.post('/posts', {
+						post: {
+							fb_created: post.created_time,
+							fb_id: post.id,
+							content: post.message
+							}
+						
+					})
+						.done((res) => {
+							let length = $('.list').children.length;
+							$('#list').append(`
+								<li> ${length}. ${res.post.content}</li>
+								<hr />
+								`)
+						})
+				})
+			})
+	})
+})
