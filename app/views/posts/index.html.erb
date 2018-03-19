@@ -12,7 +12,9 @@
 		<div class='col-md-12'>
 			<ul id="list">
 				<% @posts.each.with_index(1) do |post, i| %>
-					<li><%="#{i}. "%><%= post.content %></li>
+					
+					
+					<li><%= post.fb_created %><br>br><%= post.content %></li>
 					<hr/>
 				<%end%>
 			</ul>

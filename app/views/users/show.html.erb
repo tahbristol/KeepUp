@@ -1,0 +1,25 @@
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<%= render partial: 'layouts/navigation' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>User Account</h1><br><br>
+			<% if current_user.tracked_pages.size > 0 %>
+				<p>Your tracked pages</p>
+				<ul id="trackedPages">
+					<% current_user.tracked_pages.each do |page| %>
+						<li><%= link_to page.page, tracked_page_path(page) %></li>
+					<%end%>
+				</ul>
+			<%else%>
+				<p>You aren't tracking any pages</p>
+				<button>Add Pages</button>
+			<%end%>
+		</div>
+	</div>
+</div>
