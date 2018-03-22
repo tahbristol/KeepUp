@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319024559) do
+ActiveRecord::Schema.define(version: 20180321023737) do
 
   create_table "posts", force: :cascade do |t|
     t.string "content"
@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 20180319024559) do
   end
 
   create_table "tracked_pages", force: :cascade do |t|
-    t.string "page"
+    t.string "page_url"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "page_name"
   end
 
   create_table "users", force: :cascade do |t|

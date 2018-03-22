@@ -7,18 +7,33 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12">
-			<h1>User Account</h1><br><br>
+		<div class="col-sm-3">
+			<h1>Account for</h1>
+			</h3><%= current_user.email %></h3>
+
 			<% if current_user.tracked_pages.size > 0 %>
 				<p>Your tracked pages</p>
+
 				<ul id="trackedPages">
 					<% current_user.tracked_pages.each do |page| %>
-						<li><%= link_to page.page, tracked_page_path(page) %></li>
+						<li><%= link_to "Delete",tracked_page_path(page), method: :delete, class: "btn btn-warning" %> - <%= link_to page.page_name, tracked_page_path(page) %></li>
 					<%end%>
 				</ul>
 			<%else%>
-				<p>You aren't tracking any pages</p>
-				<button>Add Pages</button>
+				<p>You have no pages to KeepUp with.</p>
+			<%end%>
+		</div>
+		<div class="col-sm-9" id="tpFormContainer" >
+			<%= form_for @tracked_page, html: {class: ''} do |tp| %>
+				<div class="form-group">
+					<%= tp.label :page_name %>
+					<%= tp.text_field :page_name %>
+					
+					<%= tp.label :page_url %>
+					<%= tp.text_field :page_url %>
+				
+					<%= tp.submit "Create", class: 'btn btn-success' %>
+					</div>
 			<%end%>
 		</div>
 	</div>

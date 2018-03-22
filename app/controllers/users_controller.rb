@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 	end 
 	
 	def show 
+		@tracked_page = TrackedPage.new
 	end 
 	
 	def create 

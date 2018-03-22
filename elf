@@ -1,0 +1,22 @@
+
+[1mFrom:[0m /home/tyler/Desktop/Ruby/Rails/KeepUp/app/models/tracked_page.rb @ line 14 TrackedPage#getFeed:
+
+    [1;34m11[0m: [32mdef[0m [1;34mgetFeed[0m
+    [1;34m12[0m: 		response = [1;34;4mHTTP[0m.get([31m[1;31m"[0m[31mhttps://graph.facebook.com/v2.12/#{self.page_resource}[0m[31m/feed?access_token=#{ENV[[1;31m'[0m[31mFB_ACCESS_TOKEN[1;31m'[0m[31m[0m[31m]}[0m[31m[1;31m"[0m[31m[0m)
+    [1;34m13[0m: 		feedHash = [1;34;4mJSON[0m.parse(response.body)
+ => [1;34m14[0m: 		binding.pry
+    [1;34m15[0m: 		trackedPage = [1;34;4mTrackedPage[0m.find(trackedPage)
+    [1;34m16[0m: 		posts = feedHash[[31m[1;31m"[0m[31mdata[1;31m"[0m[31m[0m].collect [32mdo[0m |feed|
+    [1;34m17[0m: 				fb_created = [1;34;4mDate[0m.parse(feed[[31m[1;31m"[0m[31mcreated_time[1;31m"[0m[31m[0m])
+    [1;34m18[0m: 				posts = content = feed[[31m[1;31m"[0m[31mmessage[1;31m"[0m[31m[0m]
+    [1;34m19[0m: 				story = feed[[31m[1;31m"[0m[31mstory[1;31m"[0m[31m[0m]
+    [1;34m20[0m: 				fb_id = feed[[31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m]
+    [1;34m21[0m: 				oldPost = trackedPaged.posts.where([35mfb_id[0m: fb_id)
+    [1;34m22[0m: 				[32mif[0m oldPost.nil? && !content.nil?
+    [1;34m23[0m: 					[1;36mself[0m.posts.build([35mfb_id[0m: fb_id, [35mcontent[0m: content, [35mfb_created[0m: fb_created.strftime([31m[1;31m'[0m[31m%m/%d/%Y[1;31m'[0m[31m[0m), [35mstory[0m: story)
+    [1;34m24[0m: 				[32mend[0m
+    [1;34m25[0m: 		[32mend[0m 
+    [1;34m26[0m: 		binding.pry
+    [1;34m27[0m: 
+    [1;34m28[0m: [32mend[0m 
+

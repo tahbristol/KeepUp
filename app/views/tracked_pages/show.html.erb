@@ -1,6 +1,6 @@
 <h1>Tracked Pages</h1>
 
-<h5><%= @tPage.page %><h5>
+<h5><%= @tPage.page_name %><h5>
 	<ul>
 	<% @tPage.posts.each do |post| %>
 		<li><%= post.fb_created %><br><br><%= post.content %></li>
